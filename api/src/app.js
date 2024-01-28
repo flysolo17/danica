@@ -19,6 +19,9 @@ app.use(
 const authRoute = require("./routes/auth-route");
 app.use("/auth", authRoute);
 
+const incidentRoute = require("./routes/incident-route");
+app.use("/incidents", incidentRoute);
+
 const PORT = 3002;
 app.listen(PORT, () => {
   console.log(`Server is running to PORT ${PORT}`);

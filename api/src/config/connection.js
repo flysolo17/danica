@@ -1,7 +1,6 @@
-const mysql = require("mysql2/promise"); // Import mysql2 with promises support
+const mysql = require("mysql2/promise");
 require("dotenv").config();
 
-// Create a pool instead of a connection
 const pool = mysql.createPool({
   host: "localhost",
   user: process.env.USERNAME,
@@ -11,8 +10,10 @@ const pool = mysql.createPool({
 
 module.exports = async (query, params) => {
   try {
+    console.log(query);
     const connection = await pool.getConnection();
     const [rows, fields] = await connection.query(query, params);
+    console.log("Query Result:", rows);
     connection.release();
     return rows;
   } catch (error) {
